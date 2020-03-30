@@ -1,0 +1,163 @@
+h1,h2,h3,h4,h5 {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin-top: 1rem;
+}
+
+nav .brand-logo {
+  padding: 0 0 0 25px;
+}
+
+.right {
+  padding: 0 50px 0 0;
+}
+
+.genres {
+  font-size: 14px;
+  padding-bottom: 1rem;
+}
+
+.vote {
+  font-size: 16px;
+}
+
+.movie-title {
+  padding-bottom: 1rem;
+}
+
+.card .card-image{
+  height: 100%;
+  width: auto;
+}
+
+.card .card-content {
+  padding: 24px 24px 5px 24px;
+}
+
+.card .card-action {
+  padding: 10px 24px;
+  text-align: center;
+}
+
+.favorite {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.search-wrapper {
+  padding-top: 0.5rem;
+}
+
+input {
+  color: #777;
+  display: block;
+  font-size: 16px;
+  font-weight: 300;
+  width: 100%;
+  height: 62px;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 45px 0 30px;
+  border: 0;
+}
+
+input::-moz-placeholder,
+input::-webkit-input-placeholder,
+input::-webkit-input-placeholder { 
+  color: #039be5; 
+}
+
+/*Form*/
+
+#dropdown1 {
+  top: -68px;
+  width: 50% !important;
+  overflow: hidden;
+}
+
+.genre__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.sort__wrapper {
+  display: flex;
+}
+
+.genre__wrapper p {
+  padding: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+/*Movie info styles*/
+
+.movie__inner {
+  display: flex;
+}
+
+.movie__left {
+  margin-right: 20px;
+}
+
+.movie__info-person {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie__info h2 {
+  font-size: 20px;
+}
+
+.movie__info p {
+  border-bottom: 1px solid #cddc39;
+  padding: 5px;
+}
+
+.movie__info-person p {
+  margin: 5px 0 5px 0;
+  border-bottom: 0;
+}
+
+.movie__info-person:nth-child(odd) {
+  background-color: #cddc39;
+}
+
+.movie__info-rating {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.similar-movies .card .card-image{
+  height: 100%;
+  width: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
+
+.similar-movies h4 {
+  padding-left: 10px;
+  padding-bottom: 20px;
+}
+
+.similar-movies .movie-title {
+  font-size: 16px;
+  text-align: center;
+}
+
