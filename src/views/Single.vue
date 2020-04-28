@@ -1,6 +1,6 @@
 <template>
   <main>
-          <section class="movie-info">
+      <section class="movie-info">
         <h1 class="movie__title"></h1>
         <div class="movie__inner">
           <div class="movie__left">
@@ -13,7 +13,7 @@
             </div>
           </div>
 
-          
+        
           <div class="movie__right">
             <div class="movie__info">
               <div class="movie__info-title">

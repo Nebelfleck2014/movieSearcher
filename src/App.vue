@@ -9,14 +9,15 @@
 <script>
 import MainLayout from '@/layouts/MainLayout'
 import OthersLayout from '@/layouts/OthersLayout'
+import EmptyLayout from '@/layouts/EmptyLayout'
 export default {
   computed: {
     layout() {
-      return (this.$route.meta.layout || 'others') + '-layout'
-    },
+      return (this.$route.meta.layout || 'empty') + '-layout'
+    }
   },
   components: {
-    MainLayout, OthersLayout
+    MainLayout, OthersLayout, EmptyLayout
   }
 }
 </script>
