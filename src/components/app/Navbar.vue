@@ -178,6 +178,13 @@
               tag="li"
               :to="link.url"
             ><a href="favorites.html">{{link.title}}</a></router-link>
+            <li>
+              <a
+              @click.prevent="logout"
+            >
+              Log out
+            </a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -196,6 +203,11 @@ export default {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       closeOnClick: false
     })
+  },
+  methods: {
+    logout() {
+      this.$router.push('/login?message=logout')
+    }
   },
   beforeDestroy() {
     if(this.dropdown && this.dropdown.destroy) {

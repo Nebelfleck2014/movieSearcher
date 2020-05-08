@@ -200,3 +200,11 @@ i.right {
   margin-left: 30px;
   padding-right: 0;
 }
+
+.waves-effect {
+  background-color: #cddc39;
+}
+
+.waves-effect:hover {
+  background-color: #ced23a;
+}

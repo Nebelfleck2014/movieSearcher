@@ -59,7 +59,7 @@
     <div class="card-action">
       <div>
         <button
-            class="btn waves-effect waves-light auth-submit"
+            class="btn waves-effect lime auth-submit"
             type="submit"
             :disabled="disableButton"
         >

@@ -40,7 +40,7 @@
     <div class="card-action">
       <div>
         <button
-            class="btn waves-effect waves-light auth-submit"
+            class="btn waves-effect lime auth-submit"
             type="submit"
         >
           Войти
@@ -57,7 +57,8 @@
 </template>
 
 <script>
-import {email, required, minLength} from 'vuelidate/lib/validators' 
+import {email, required, minLength} from 'vuelidate/lib/validators'
+import {mapActions} from 'vuex'
 
 export default {
   data: () => ({
@@ -69,7 +70,8 @@ export default {
     password: {required, minLength: minLength(6)}
   },
   methods: {
-    submitHandler() {
+    ...mapActions(["login"]),
+    async submitHandler() {
       if(this.$v.$invalid) {
         this.$v.$touch()
         return
@@ -78,7 +80,12 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.$router.push('/')
+      try {
+        await this.login(formData)
+        this.$router.push('/')
+      } catch (error) {
+        throw error
+      }
     }
   }
 }
