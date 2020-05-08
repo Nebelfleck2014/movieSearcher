@@ -12,8 +12,8 @@ import 'firebase/database'
 
 Vue.config.productionTip = false
 
-Vue.use(Vuelidate)
 Vue.use(messagePlugin)
+Vue.use(Vuelidate)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZ07HehDy0JYK10ImuQQ4IVvP4eAvGQPQ",

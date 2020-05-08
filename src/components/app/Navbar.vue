@@ -192,6 +192,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   data: () => ({
     links: [
@@ -205,7 +207,9 @@ export default {
     })
   },
   methods: {
-    logout() {
+    ...mapActions(['logoutFromFirebase']),
+    async logout() {
+      await this.logoutFromFirebase()
       this.$router.push('/login?message=logout')
     }
   },

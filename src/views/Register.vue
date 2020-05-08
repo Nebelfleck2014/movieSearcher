@@ -78,6 +78,7 @@
 
 <script>
 import {email, required, minLength} from 'vuelidate/lib/validators' 
+import {mapActions} from 'vuex'
 import messages from '@/utils/messages'
 
 export default {
@@ -95,13 +96,9 @@ export default {
     name: {required},
     agree: {checked: v => v} //самописный валидатор
   },
-  mounted() {
-    if(messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message])
-    }
-  },
   methods: {
-    submitHandler() {
+    ...mapActions(['register']),
+    async submitHandler() {
 
       this.disableButton = true //чтобы предотвратить повторную отправку
 
@@ -114,7 +111,14 @@ export default {
       password: this.password,
       name: this.name
     }
-    this.$router.push('/')
+
+    try {
+      await this.register(formData) //action
+      this.$router.push('/')
+    } catch (fbError) {
+      this.$error(messages[fbError.code] || 'Something has gone wrong')
+    }
+
   }
     }
 }

@@ -59,6 +59,7 @@
 <script>
 import {email, required, minLength} from 'vuelidate/lib/validators'
 import {mapActions} from 'vuex'
+import messages from '@/utils/messages'
 
 export default {
   data: () => ({
@@ -68,6 +69,11 @@ export default {
   validations: {
     email: {email, required}, //условия валидации
     password: {required, minLength: minLength(6)}
+  },
+  mounted() {
+    if(messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message])
+    }
   },
   methods: {
     ...mapActions(["login"]),
@@ -83,8 +89,8 @@ export default {
       try {
         await this.login(formData)
         this.$router.push('/')
-      } catch (error) {
-        throw error
+      } catch (fbError) {
+        this.$error(messages[fbError.code] || 'Something has gone wrong')
       }
     }
   }
