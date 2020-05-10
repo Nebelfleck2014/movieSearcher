@@ -1,98 +1,108 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <span class="card-title">Вход в систему</span>
+      <span class="card-title">Log in</span>
       <div class="input-field">
         <input
-            id="email"
-            type="text"
-            v-model.trim="email"
-            :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) }"
-        >
+          id="email"
+          type="text"
+          v-model.trim="email"
+          :class="{
+            invalid:
+              ($v.email.$dirty && !$v.email.required) ||
+              ($v.email.$dirty && !$v.email.email),
+          }"
+        />
         <label for="email">Email</label>
-        <small 
+        <small
           class="helper-text invalid"
           v-if="$v.email.$dirty && !$v.email.required"
-          >Поле Email не должно быть пустым</small>
-          <small 
+          >The field could not be empty</small
+        >
+        <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.email"
-          >Неверный формат Email</small>
+          >Wrong Email format</small
+        >
       </div>
       <div class="input-field">
         <input
-            id="password"
-            type="password"
-            v-model.trim="password"
-            :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength) }"
-        >
-        <label for="password">Пароль</label>
-        <small 
+          id="password"
+          type="password"
+          v-model.trim="password"
+          :class="{
+            invalid:
+              ($v.password.$dirty && !$v.password.required) ||
+              ($v.password.$dirty && !$v.password.minLength),
+          }"
+        />
+        <label for="password">Password</label>
+        <small
           v-if="$v.password.$dirty && !$v.password.required"
           class="helper-text invalid"
-          >Поле не должно быть пустым</small>
-        <small 
+          >The field could not be empty</small
+        >
+        <small
           v-else-if="$v.password.$dirty && !$v.password.minLength"
           class="helper-text invalid"
-          >Длина пароля не может быть меньше {{$v.password.$params.minLength.min}} символов</small>
+          >Password must have at least
+          {{ $v.password.$params.minLength.min }} letters</small
+        >
       </div>
     </div>
     <div class="card-action">
       <div>
-        <button
-            class="btn waves-effect lime auth-submit"
-            type="submit"
-        >
-          Войти
+        <button class="btn waves-effect lime auth-submit" type="submit">
+          Log in
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Нет аккаунта?
-        <router-link to="/register">Зарегистрироваться</router-link>
+        No account?
+        <router-link to="/register">Register</router-link>
       </p>
     </div>
   </form>
 </template>
 
 <script>
-import {email, required, minLength} from 'vuelidate/lib/validators'
-import {mapActions} from 'vuex'
-import messages from '@/utils/messages'
+import { email, required, minLength } from "vuelidate/lib/validators";
+import { mapActions } from "vuex";
+import messages from "@/utils/messages";
 
 export default {
   data: () => ({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   }),
   validations: {
-    email: {email, required}, //условия валидации
-    password: {required, minLength: minLength(6)}
+    email: { email, required }, //условия валидации
+    password: { required, minLength: minLength(6) },
   },
   mounted() {
-    if(messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message])
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
     }
   },
   methods: {
     ...mapActions(["login"]),
     async submitHandler() {
-      if(this.$v.$invalid) {
-        this.$v.$touch()
-        return
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
       }
       const formData = {
         email: this.email,
-        password: this.password
-      }
+        password: this.password,
+      };
       try {
-        await this.login(formData)
-        this.$router.push('/')
+        await this.login(formData);
+        this.$router.push("/");
       } catch (fbError) {
-        this.$error(messages[fbError.code] || 'Something has gone wrong')
+        this.$error(messages[fbError.code] || "Something has gone wrong");
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

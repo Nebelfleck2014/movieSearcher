@@ -179,10 +179,14 @@
               :to="link.url"
             ><a href="favorites.html">{{link.title}}</a></router-link>
             <li>
-              <a
+              <a v-if="user"
               @click.prevent="logout"
             >
               Log out
+            </a>
+            <a v-else @click.prevent="login" 
+            >
+            Log in
             </a>
             </li>
           </ul>
@@ -199,7 +203,8 @@ export default {
     links: [
       {title: 'Favorite', url: '/favorites'}, //url берется из router
     ],
-    dropdown: null
+    dropdown: null,
+    user: null //авторизованный юзер
   }),
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
@@ -207,11 +212,17 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['logoutFromFirebase']),
+    ...mapActions(['logoutFromFirebase', 'getUid']),
     async logout() {
       await this.logoutFromFirebase()
       this.$router.push('/login?message=logout')
+    },
+    login() {
+      this.$router.push('/login')
     }
+  },
+  async created() {
+    this.user = await this.getUid() 
   },
   beforeDestroy() {
     if(this.dropdown && this.dropdown.destroy) {

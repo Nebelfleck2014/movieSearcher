@@ -32,6 +32,10 @@ nav .brand-logo {
   padding-bottom: 1rem;
 }
 
+.card-wrapper {
+  margin: 15px auto;
+}
+
 .card .card-image{
   height: 100%;
   width: auto;
@@ -39,6 +43,13 @@ nav .brand-logo {
 
 .card .card-content {
   padding: 24px 24px 5px 24px;
+}
+
+.movie-card__content {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card .card-action {

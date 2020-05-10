@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 import App from './App.vue'
 import messagePlugin from '@/utils/message.plugin'
+import Loader from '@/components/app/Loader'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
+Vue.component('Loader', Loader)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZ07HehDy0JYK10ImuQQ4IVvP4eAvGQPQ",
