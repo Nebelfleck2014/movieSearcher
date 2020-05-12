@@ -207,15 +207,37 @@ input::-webkit-input-placeholder {
   padding: 16px 24px;
 }
 
+.card .card-image img {
+  max-height: 380px;
+}
+
 i.right {
   margin-left: 30px;
   padding-right: 0;
 }
 
-.waves-effect {
+.waves-effect:hover {
+  background-color: #ced23a;
+}
+
+.pagination__mid {
+  display: flex;
+  margin: 0 15px;
+}
+
+.pagination__mid-list {
+  display: flex;
+}
+
+.pagination a.current {
   background-color: #cddc39;
 }
 
-.waves-effect:hover {
-  background-color: #ced23a;
+.pagination__inner {
+  display: flex;
+  align-items: center;
+}
+
+.release_date {
+  font-size: 16px;
 }

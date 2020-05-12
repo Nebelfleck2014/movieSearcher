@@ -11,12 +11,13 @@
         </div>
         <div class="card-content movie-card__content">
           <h5 class="movie-title">
-            <a href="">{{ movie.title }}</a>
+            <a href="">{{movieTitle(movie.title)}} <span class="release_date">({{movieRelease(movie.release_date)}})</span>
+            </a>
           </h5>
           <p class="vote">Average Vote: {{ movie.vote_average }}</p>
         </div>
         <div class="card-action">
-          <a href="single.html">More Info</a>
+          <a @click="$router.push('/single/' + movie.id)">More Info</a>
         </div>
       </div>
       
@@ -26,6 +27,18 @@
 
 <script>
 export default {
-  props: ["movies"]
-};
+  props: ["movies"],
+  methods: {
+    movieRelease(date) { 
+      return date.split('-')[0] // получаем только год, без числа и месяца
+    },
+    movieTitle(str) {
+      if(str.length > 35) {
+        return str.slice(0,35)+'...' 
+      } else {
+        return str
+      }
+    }, //обрезаем длинный title
+  },
+}
 </script>

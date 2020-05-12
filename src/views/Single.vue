@@ -214,3 +214,16 @@
       </section>
   </main>
 </template>
+
+<script>
+export default {
+  name: 'single',
+  data: () => ({
+    movie: null,
+    loading: true
+  }),
+  mounted() {
+    
+  }
+}
+</script>
