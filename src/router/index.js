@@ -18,7 +18,7 @@ const routes = [
     component: () => import('../views/Favorites.vue')
   },
   {
-    path: '/single',
+    path: '/single/:id',
     name: 'Single',
     meta: {layout: 'others'},
     component: () => import('../views/Single.vue')
