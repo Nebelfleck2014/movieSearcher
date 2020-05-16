@@ -12,6 +12,9 @@ const routes = [
     component: Home
   },
   {
+    path: '/search', redirect: '/'
+  }, //При очищении input поиска перенаправляем на главную страницу
+  {
     path: '/favorites',
     name: 'Favorites',
     meta: {layout: 'others'},
@@ -22,6 +25,12 @@ const routes = [
     name: 'Single',
     meta: {layout: 'others'},
     component: () => import('../views/Single.vue')
+  },
+  {
+    path: '/search/:query',
+    name: 'MovieSearch',
+    meta: {layout: 'main'},
+    component: () => import('../views/MovieSearch.vue')
   },
   {
     path: '/login',

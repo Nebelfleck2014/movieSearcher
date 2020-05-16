@@ -161,16 +161,13 @@
       <nav class="lime">
         <div class="nav-wrapper">
           <a href="/" class="brand-logo">Movie Searcher</a>
-          <ul class="right hide-on-med-and-down">
+          <ul class="right hide-on-med-and-down search-dropdown__lol">
             <!-- Dropdown Trigger --> 
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"
               ref="dropdown"
             >Options<i class="material-icons right"></i></a></li>
             <li>
-              <div class="search-wrapper">
-                <input id="search" placeholder="Search">
-                <div class="search-result"></div>
-              </div>
+            <Search />
             </li>    
             <router-link
               v-for="link in links"

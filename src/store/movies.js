@@ -1,19 +1,14 @@
 import axios from 'axios'
 
 export default {
-  state: {
-    page: null
-  },
   actions: {
     async fetchMovies({commit}, options) {
-      //let params = new URLSearchParams(document.location.search.substring(1));
-      //const pageNum = params.get('page')
       try {
         const key = process.env.VUE_APP_TMDB
         const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=${options}`)
-        return await res.data
+        commit('setMovies', res.data)
       } catch (error) {
-        commit(setError, error)
+        throw error
       }
     },
     async fetchMovieById({commit}, movieId) {
@@ -42,6 +37,6 @@ export default {
       } catch (error) {
         //commit(setError, error)
       }
-    }
-  }
+    },
+  },
 }

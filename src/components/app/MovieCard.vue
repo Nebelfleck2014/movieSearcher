@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col s12 m4 card-wrapper" v-for="movie in movies" :key="movie.id">
+    <div class="col s12 m4 card-wrapper" v-for="movie in allMovies" :key="movie.id">
       
       <div class="card">
         <div class="card-image">
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ["movies"],
+  props: ["allMovies"],
   methods: {
     movieRelease(date) { 
       return date.split('-')[0] // получаем только год, без числа и месяца

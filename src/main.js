@@ -11,6 +11,8 @@ import 'materialize-css/dist/js/materialize.min'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import Search from '@/components/app/Search'
+import MovieCard from '@/components/app/MovieCard'
 
 Vue.config.productionTip = false
 
@@ -18,6 +20,8 @@ Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.component('Loader', Loader)
 Vue.component('Pagination', Paginate)
+Vue.component('Search', Search)
+Vue.component('MovieCard', MovieCard)
 
 const firebaseConfig = {
   apiKey: "AIzaSyCZ07HehDy0JYK10ImuQQ4IVvP4eAvGQPQ",
