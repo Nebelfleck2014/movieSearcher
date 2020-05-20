@@ -1,16 +1,10 @@
 import axios from 'axios'
 
 export default {
+  state: {
+    sort: 'popular'
+  },
   actions: {
-    async fetchMovies({commit}, options) {
-      try {
-        const key = process.env.VUE_APP_TMDB
-        const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=${options}`)
-        commit('setMovies', res.data)
-      } catch (error) {
-        throw error
-      }
-    },
     async fetchMovieById({commit}, movieId) {
       try {
         const key = process.env.VUE_APP_TMDB

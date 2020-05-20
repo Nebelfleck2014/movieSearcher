@@ -13,6 +13,8 @@ import 'firebase/auth'
 import 'firebase/database'
 import Search from '@/components/app/Search'
 import MovieCard from '@/components/app/MovieCard'
+import VuePaginate from 'vue-paginate'
+Vue.use(VuePaginate)
 
 Vue.config.productionTip = false
 

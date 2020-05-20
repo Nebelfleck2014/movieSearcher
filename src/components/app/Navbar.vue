@@ -2,165 +2,12 @@
   <section>
     <ul id="dropdown1" class="dropdown-content">
       <li>
-        <form action="#">
-          <p>Select Genre</p>
-          <div class="genre__wrapper">
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Action</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Adventure</span>
-              </label>
-            </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Animation</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Comedy</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Crime</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Documentary</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Drama</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Fantasy</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Family</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>History</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Horror</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Music</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Mystory</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Romance</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Science fiction</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Tv Movie</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>Thriller</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span>War</span>
-                </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" />
-                    <span>Western</span>
-                  </label>
-                </p>
-            </div>
-          </form>
-          <form action="#">
-            <p>Sort movies by</p>
-            <div class="sort__wrapper">
-              <p>
-                <label>
-                  <input name="group1" type="radio" checked />
-                  <span>Popularity</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="group1" type="radio" checked />
-                  <span>Average votes</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="group1" type="radio" checked />
-                  <span>Number of votes</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="group1" type="radio" checked />
-                  <span>Original title</span>
-                </label>
-              </p>
-              <p>
-                <label>
-                  <input name="group1" type="radio" checked />
-                  <span>Release date</span>
-                </label>
-              </p>
-            </div>
-          </form>
-        </li>
+        <MovieSorted />
+      </li>
       </ul>
       <nav class="lime">
         <div class="nav-wrapper">
-          <a href="/" class="brand-logo">Movie Searcher</a>
+          <a href="/MovieSearcher/" class="brand-logo">Movie Searcher</a>
           <ul class="right hide-on-med-and-down search-dropdown__lol">
             <!-- Dropdown Trigger --> 
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"
@@ -194,6 +41,7 @@
 
 <script>
 import {mapActions} from 'vuex'
+import MovieSorted from '@/components/MovieSorted'
 
 export default {
   data: () => ({
@@ -201,7 +49,7 @@ export default {
       {title: 'Favorite', url: '/favorites'}, //url берется из router
     ],
     dropdown: null,
-    user: null //авторизованный юзер
+    user: null, //авторизованный юзер
   }),
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
@@ -225,6 +73,9 @@ export default {
     if(this.dropdown && this.dropdown.destroy) {
       this.dropdown.destroy()
     }
-  } //Избавляемся от утечек памяти
+  }, //Избавляемся от утечек памяти
+  components: {
+    MovieSorted
+  }
 }
 </script>

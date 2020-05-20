@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { log } from 'util';
 export default {
   props: {
     current: {
@@ -52,7 +51,7 @@ export default {
       return (end < this.totalPages) ? end : this.totalPages
     },
     totalPages() {
-      return this.total / this.perPage
+      return Math.ceil(this.total / this.perPage)
     },
     nextPage() {
       return this.current + 1;
@@ -75,7 +74,7 @@ export default {
       return this.current < this.totalPages
     },
     changePage(page) {
-      this.$emit("page-changed", page);
+      this.$emit("page-changed", page)
     },
   },
 };

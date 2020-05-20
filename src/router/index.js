@@ -6,7 +6,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/Moviesearcher/',
+    name: 'Home',
+    meta: {layout: 'main'},
+    component: Home
+  },
+  {
+    path: '/Moviesearcher/:params',
     name: 'Home',
     meta: {layout: 'main'},
     component: Home

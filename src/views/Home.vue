@@ -4,8 +4,8 @@
       <Loader v-if="loading" />
       <MovieCard v-else :allMovies="allMovies.results"/>
     </div>
-    <div class="pagination">   
-      <Pagination :current="currentPage" :total="totalMovies" :perPage="perPage" @page-changed="getMovies" />
+    <div class="pagination"> 
+      <Pagination :current="this.page" :total="this.totalResults" :perPage="perPage" @page-changed="pageChanged" />
     </div>
   </section>
 </template>
@@ -13,34 +13,64 @@
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
 
+
 export default {
   name: 'Home',
-  data: () => ({
-    loading: true,
-    totalMovies: 0,
-    currentPage: 1,
-    perPage: 20 
-  }),
+  data: function(){
+    return {
+      loading: true,
+      perPage: 20,  //кол-во фильмов на странице
+    }
+  },
   methods: {
-    ...mapActions(['setSearchQuery', 'search']), //
-    async getMovies(page) {
-      this.movies = await this.$store.dispatch("fetchMovies", page)
-      this.totalMovies = await parseInt(this.allMovies.total_results) //общее кол-во фильмов
-      this.currentPage = page
+    pageChanged(page) {
+      //this.$router.push(this.$route.path + '?page=' + page)
+      this.$store.commit('newPage', page)
+    },
+    async getMovies() {
+      await this.$store.dispatch("fetchMovies")
       this.loading = false
-      window.scrollTo({ top: 0, behavior: 'smooth' }) // прокрутка к началу страницы
+      //window.scrollTo({ top: 0, behavior: 'smooth' }) // прокрутка к началу страницы
       //this.$router.push(`${this.$route.path}?page=${page}`) // номер текущей страницы в адр.строке
     },
   },
-  created: function() {
-    this.getMovies(this.currentPage)
+  created() {
+    this.getMovies() //запрос фильмов при создании
   },
   computed: {
+    ...mapState(['totalResults', 'page', 'sort', 'genres' ]),
+    sortedMovies() {
+      return this.sort
+    }, 
+    changedGenres() {
+      return this.genres
+    },
     allMovies() {
       return this.$store.state.allMovies
-    }
+    },
+    newPage() {
+      return this.page
+    },
   },
-  components: {
+  watch: {
+    async sortedMovies() {
+      try {
+        await this.$store.dispatch('fetchMovies')
+      } catch (error) {
+      }
+    }, //сортировка фильмов: popular, original title etc.
+    async changedGenres() {
+      try {
+        await this.$store.dispatch('fetchMovies')
+      } catch (error) {
+      }
+    }, //сортировка по жанрам
+    async newPage() {
+      try {
+        await this.$store.dispatch('fetchMovies')
+      } catch (error) {
+      }
+    }, //пагинация, смена страницы
   },
 }
 </script>
