@@ -29,6 +29,7 @@ nav .brand-logo {
 }
 
 .movie-title {
+  cursor: pointer;
   padding-bottom: 1rem;
 }
 
@@ -36,7 +37,7 @@ nav .brand-logo {
   margin: 15px auto;
 }
 
-.card .card-image{
+.card .card-image__default{
   height: 100%;
   width: auto;
   min-height: 380px;
@@ -56,12 +57,17 @@ nav .brand-logo {
 .card .card-action {
   padding: 10px 24px;
   text-align: center;
+  cursor: pointer;
 }
 
 .favorite {
   position: absolute;
   bottom: 20px;
   right: 20px;
+}
+
+.addToFavorite {
+  color: red;
 }
 
 .search-wrapper {
@@ -73,10 +79,6 @@ nav .brand-logo {
   display: flex;
   flex-direction: column;
   width: 200px;
-}
-
-.search-dropdown__lol {
-  z-index: 10000;
 }
 
 .search-result li {
@@ -153,6 +155,32 @@ input::-webkit-input-placeholder {
   margin-right: 20px;
 }
 
+.movie__left .poster__image {
+  width: 380px;
+  height: 500px;
+}
+
+.poster {
+  position: relative;
+}
+
+.poster__rating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px 20px;
+  background-color: #cddc39;
+  border-radius: 0 10px 20px;
+}
+
+.poster__link {
+  display: inline-flex;
+}
+
+.poster__link i {
+  padding-left: 15px;
+}
+
 .movie__info-person {
   display: flex;
   justify-content: space-between;
@@ -160,6 +188,7 @@ input::-webkit-input-placeholder {
 
 .movie__info h2 {
   font-size: 20px;
+  margin: 15px 0;
 }
 
 .movie__info p {
@@ -188,6 +217,10 @@ input::-webkit-input-placeholder {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
+}
+
+.similar-movies__img {
+  min-height: 304px;
 }
 
 .similar-movies h4 {
@@ -264,6 +297,19 @@ i.right {
 .pagination__inner {
   display: flex;
   align-items: center;
+}
+
+.pagination li a {
+  color: slategray;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  background-color: #cddc39;
 }
 
 .release_date {

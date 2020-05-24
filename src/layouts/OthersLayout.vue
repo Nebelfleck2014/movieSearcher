@@ -3,15 +3,9 @@
     <header>
       <nav class="lime">
         <div class="nav-wrapper">
-          <router-link to="/" class="brand-logo">Movie Searcher</router-link>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <div class="search-wrapper">
-                <input id="search" placeholder="Search">
-                <div class="search-result"></div>
-              </div>
-            </li>    
-            <li><router-link to="/">Home</router-link></li>
+          <router-link to="/MovieSearcher/" class="brand-logo">Movie Searcher</router-link>
+          <ul class="right hide-on-med-and-down">    
+            <li><router-link to="/MovieSearcher/">Home</router-link></li>
           </ul>
         </div>
       </nav>

@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/Moviesearcher/:params',
-    name: 'Home',
+    name: 'MovieSearcher',
     meta: {layout: 'main'},
     component: Home
   },

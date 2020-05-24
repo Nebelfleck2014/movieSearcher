@@ -10,9 +10,11 @@
               :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
               alt=""
             />
-            <span class="poster__rating">5.9</span>
+            <span class="poster__rating">{{movie.vote_average}}</span>
             <div>
-              <a class="waves-effect lime btn">Add to faves</a>
+              <a class="waves-effect lime btn poster__link">Add to favorites
+                <i class="material-icons">star</i>
+              </a>
             </div>
           </div>
         </div>

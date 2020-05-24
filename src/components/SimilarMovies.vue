@@ -5,7 +5,7 @@
       <div class="col s12 m3" v-for="movie in similar" :key="movie.id">
         <div class="card__wrapper">
           <div class="card similar-movies__card">
-            <div class="card-image">
+            <div class="card-image similar-movies__img">
               <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" />
             </div>
             <div class="card-content similar-movies__content">
