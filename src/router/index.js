@@ -18,7 +18,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/search', redirect: '/'
+    path: '/search', redirect: '/MovieSearcher'
   }, //При очищении input поиска перенаправляем на главную страницу
   {
     path: '/favorites',

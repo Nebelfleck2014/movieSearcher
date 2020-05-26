@@ -2,7 +2,7 @@
   <main>
     <div class="movies">
       <Loader v-if="loading"/>
-      <h4 class="center" v-else-if="!movies.length">You have not favorites movies</h4>
+      <h4 class="center" v-else-if="!movies.length">You don't have favorites movies</h4>
       <div class="row" v-else>
         <paginate name="moviesPagination" :list="movies" :per="9">
           <div
@@ -64,8 +64,8 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch("getFavorite") 
-    this.movies = this.$store.state.favoritesMovies
+    await this.$store.dispatch("favorites/getFavorite") 
+    this.movies = this.$store.state.favorites.favoritesMovies //обращаемся к state модуля с namespaced
     this.loading = false
   },
   methods: {
@@ -77,9 +77,9 @@ export default {
       }
     }, //обрезаем длинный title
     async removeFavs(data) {
-      await this.$store.dispatch("removeFavorite", data)
-      await this.$store.dispatch("getFavorite") 
-      this.movies = this.$store.state.favoritesMovies.filter(movie => movie.id !== data)
+      await this.$store.dispatch("favorites/removeFavorite", data)
+      await this.$store.dispatch("favorites/getFavorite") 
+      this.movies = this.$store.state.favorites.favoritesMovies.filter(movie => movie.id !== data)
     }
   },
 }

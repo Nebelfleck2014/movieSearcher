@@ -1,15 +1,46 @@
 <template>
-  <Loader v-if="loading"/>
-  <MovieCard v-else :allMovies="searchMovies"/>
+  <section>
+    <Loader v-if="loading" />
+    <MovieCard v-else :allMovies="searchMovies" />
+    <div class="pagination">
+      <Pagination
+        :current="this.page"
+        :total="this.totalResults"
+        :perPage="this.perPage"
+        @page-changed="pageChanged"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-  name: 'movieSearch',
+  name: "movieSearch",
+  methods: {
+    pageChanged(page) {
+      this.$store.commit("search/changePage", page) //search - module, с namespaced true
+    },
+  },
   computed: {
-    ...mapState( 'search', ['loading', 'searchMovies']), //seacrh - store module
-    }
-  }
+    ...mapState("search", [
+      "loading",
+      "searchMovies",
+      "page",
+      "totalResults",
+      "perPage",
+    ]), //seacrh - store module
+    newPage() {
+      return this.page;
+    },
+  },
+  watch: {
+    async newPage() {
+      try {
+        await this.$store.dispatch("search/search")
+      } catch (error) {}
+    }, //пагинация, смена страницы
+  },
+};
 </script>

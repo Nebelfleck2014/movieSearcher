@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   props: ["allMovies"],
@@ -46,24 +47,25 @@ export default {
   },
   methods: {
     movieRelease(date) {
-      return date.split("-")[0]; // получаем только год, без числа и месяца
+      return date.split("-")[0] // получаем только год, без числа и месяца
     },
     movieTitle(str) {
       if (str.length > 35) {
-        return str.slice(0, 35) + "...";
+        return str.slice(0, 35) + "..."
       } else {
-        return str;
+        return str
       }
     }, //обрезаем длинный title
     async favoriteMovies({movie, idx}) {
-      await this.$store.dispatch("getFavorite") //получаем хранящиеся в firebase фильмы
-      const favorites = this.$store.state.favoritesMovies
+      await this.$store.dispatch("favorites/getFavorite") //получаем хранящиеся в firebase фильмы
+      const favorites = this.$store.state.favorites.favoritesMovies
+      console.log(favorites)
       const isFavoriteIdx = favorites.findIndex(
         (favMovie) => favMovie.id === movie.id
-      ); //получаем id всех фильмов в категории favorites
+      ) //получаем id всех фильмов в категории favorites
       if (isFavoriteIdx !== -1) {
         const data = favorites.find((favMovie) => favMovie.id === movie.id).key; //получаем ключ или id удаляемого элемента
-        await this.$store.dispatch("removeFavorite", data) //
+        await this.$store.dispatch("favorites/removeFavorite", data) //
         this.activeMovies = this.activeMovies.splice(0, idx, ...this.activeMovies) //удаляем класс у фильмов
       } else {
         this.activeMovies.push(idx) //вешаем класс, если фильм есть в activeMovies
@@ -79,8 +81,8 @@ export default {
         ) 
 
         if (index !== -1) {
-          await this.$store.dispatch("addToFavorites", fvrMovie);
-          console.log("added" + movie.id);
+          await this.$store.dispatch("favorites/addToFavorites", fvrMovie)
+          console.log("added" + movie.id)
         }
       } //если фильм уже есть в БД, то удаляем его, если нет - добавляем
     },
