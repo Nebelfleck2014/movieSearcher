@@ -11,13 +11,14 @@
 </template>
 
 <script>
-import Navbar from '../components/app/Navbar'
-import Footer from '../components/app/Footer'
+import Navbar from "../components/app/Navbar";
+import Footer from "../components/app/Footer";
 
 export default {
-  name: 'main-layout',
+  name: "main-layout",
   components: {
-    Navbar, Footer
-  }
-}
+    Navbar,
+    Footer,
+  },
+};
 </script>

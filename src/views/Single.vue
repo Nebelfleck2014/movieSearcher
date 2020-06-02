@@ -96,18 +96,18 @@ export default {
   }),
   methods: {
     async getMovie() {
-      const id = this.$route.params.id; //должно совпадать со значением в роутере
-      this.movie = await this.$store.dispatch("fetchMovieById", id);
-      this.genres = this.movie.genres.map((genre) => genre.name).join(", ");
+      const id = this.$route.params.id //должно совпадать со значением в роутере
+      this.movie = await this.$store.dispatch("fetchMovieById", id)
+      this.genres = this.movie.genres.map((genre) => genre.name).join(", ")
 
-      this.movieCast = await this.$store.dispatch("fetchCast", id); //Получаем список актеров и работников
+      this.movieCast = await this.$store.dispatch("fetchCast", id) //Получаем список актеров и работников
       const director = _.filter(this.movieCast.crew, function(item) {
-        return item.job === "Director";
+        return item.job === "Director"
       }); //ищем в массиве режиссера фильма
       this.directorName = director[0].name;
       this.mainActors = this.movieCast.cast.slice(0, 8) // 8 главных актеров
       window.scrollTo({ top: 0, behavior: 'smooth' }) // прокрутка к началу страницы
-      this.loading = false;
+      this.loading = false
     },
   },
   mounted() {

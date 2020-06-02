@@ -1,8 +1,10 @@
 <template>
   <main>
     <div class="movies">
-      <Loader v-if="loading"/>
-      <h4 class="center" v-else-if="!movies.length">You don't have favorites movies</h4>
+      <Loader v-if="loading" />
+      <h4 class="center" v-else-if="!movies.length">
+        You don't have favorites movies
+      </h4>
       <div class="row" v-else>
         <paginate name="moviesPagination" :list="movies" :per="9">
           <div
@@ -21,7 +23,9 @@
               </div>
               <div class="card-content movie-card__content">
                 <h5 class="movie-title">
-                  <a @click="$router.push('/single/' + movie.id)">{{ movieTitle(movie.title) }}</a>
+                  <a @click="$router.push('/single/' + movie.id)">{{
+                    movieTitle(movie.title)
+                  }}</a>
                 </h5>
                 <p class="vote">Average Vote: {{ movie.vote }}</p>
               </div>
@@ -53,20 +57,19 @@
 </template>
 
 <script>
-
 export default {
   name: "favorites",
-  data: function(){
-    return{
+  data: function() {
+    return {
       movies: [],
       paginate: ["moviesPagination"],
-      loading: true
-    }
+      loading: true,
+    };
   },
   async mounted() {
-    await this.$store.dispatch("favorites/getFavorite") 
-    this.movies = this.$store.state.favorites.favoritesMovies //обращаемся к state модуля с namespaced
-    this.loading = false
+    await this.$store.dispatch("favorites/getFavorite");
+    this.movies = this.$store.state.favorites.favoritesMovies; //обращаемся к state модуля с namespaced
+    this.loading = false;
   },
   methods: {
     movieTitle(str) {
@@ -77,10 +80,12 @@ export default {
       }
     }, //обрезаем длинный title
     async removeFavs(data) {
-      await this.$store.dispatch("favorites/removeFavorite", data)
-      await this.$store.dispatch("favorites/getFavorite") 
-      this.movies = this.$store.state.favorites.favoritesMovies.filter(movie => movie.id !== data)
-    }
+      await this.$store.dispatch("favorites/removeFavorite", data);
+      await this.$store.dispatch("favorites/getFavorite");
+      this.movies = this.$store.state.favorites.favoritesMovies.filter(
+        (movie) => movie.id !== data
+      );
+    },
   },
-}
+};
 </script>

@@ -7,10 +7,10 @@
 </template>
 
 <script>
-  import {Circle8} from 'vue-loading-spinner'
-  export default {
-    components: {
-      Circle8
-    }
-  }
+import { Circle8 } from "vue-loading-spinner";
+export default {
+  components: {
+    Circle8,
+  },
+};
 </script>

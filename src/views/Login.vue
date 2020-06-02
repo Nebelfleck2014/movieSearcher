@@ -98,7 +98,7 @@ export default {
       };
       try {
         await this.login(formData);
-        this.$router.push("/");
+        this.$router.push("/moviesearcher");
       } catch (fbError) {
         this.$error(messages[fbError.code] || "Something has gone wrong");
       }

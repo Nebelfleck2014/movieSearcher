@@ -6,10 +6,14 @@
         <div class="card__wrapper">
           <div class="card similar-movies__card">
             <div class="card-image similar-movies__img">
-              <img :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" />
+              <img
+                :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+              />
             </div>
             <div class="card-content similar-movies__content">
-              <h5 class="similar-movie__title">{{movieTitle(movie.title)}}</h5>
+              <h5 class="similar-movie__title">
+                {{ movieTitle(movie.title) }}
+              </h5>
             </div>
             <div class="card-action similar-movie__link">
               <a @click="movieInfo(movie.id)">More info</a>
@@ -40,10 +44,10 @@ export default {
       this.$emit("movie-changed", id);
     },
     movieTitle(str) {
-      if(str.length > 30) {
-        return str.slice(0,30)+'...' 
+      if (str.length > 30) {
+        return str.slice(0, 30) + "...";
       } else {
-        return str
+        return str;
       }
     }, //обрезаем длинный title
   },

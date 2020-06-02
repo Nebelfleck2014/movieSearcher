@@ -8,7 +8,7 @@ export default {
     loading: false, //loader
     page: 1,
     totalResults: null,
-    perPage: 20
+    perPage: 20,
   },
   actions: {
     //Search actions
@@ -25,7 +25,7 @@ export default {
         );
         commit("setSearchMovies", res.data);
       } catch (error) {
-        console.log(error)
+        commit('setError', error)
       }
       commit("setLoading", false);
     },
@@ -33,12 +33,12 @@ export default {
   mutations: {
     //Поиск фильмов
 
-    changePage: (state, page) => state.page = page,
+    changePage: (state, page) => (state.page = page),
     setSearchQuery: (state, searchQuery) => (state.searchQuery = searchQuery), //поисковый запрос
     setLoading: (state, loading) => (state.loading = loading),
     setSearchMovies: (state, data) => {
-      state.searchMovies = data.results
-      state.totalResults = data.total_results
+      state.searchMovies = data.results;
+      state.totalResults = data.total_results;
     }, //найденные фильмы
     resetSearchMovies: (state) => (state.searchMovies = []),
   },

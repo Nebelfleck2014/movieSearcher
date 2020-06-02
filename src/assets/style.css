@@ -332,5 +332,10 @@ i.right {
   margin-bottom: 20px;
 }
 
+.errors {
+  height: 44vh;
+}
 
-
+.spinner--circle-8 {
+  margin: 0 auto !important;
+}

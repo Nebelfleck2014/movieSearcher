@@ -1,6 +1,9 @@
 <template>
   <section>
     <Loader v-if="loading" />
+    <div class="errors" v-else-if="!searchMovies.length">
+      <h5>No Results</h5>
+    </div>
     <MovieCard v-else :allMovies="searchMovies" />
     <div class="pagination">
       <Pagination
